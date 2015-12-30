@@ -1,0 +1,62 @@
+.social-share li {
+  display: inline-block;
+  margin-right: 5px;
+  transition: transform 0.5s; }
+  .social-share li a {
+    color: #fff;
+    display: inline-block;
+    font-size: 18px;
+    height: 36px;
+    width: 36px;
+    line-height: 36px;
+    border-radius: 18px; }
+.social-share li:hover {
+  transform: rotate(360deg); }
+.social-share .wechat a {
+  background: #9ad993; }
+  .social-share .wechat a:hover {
+    background: #77cc6d; }
+.social-share .github a {
+  background: #cfcfcf; }
+  .social-share .github a:hover {
+    background: #b5b5b5; }
+.social-share .facebook a {
+  background: #4c70ba; }
+  .social-share .facebook a:hover {
+    background: #3B5998; }
+.social-share .linkedin a {
+  background: #58d1ef; }
+  .social-share .linkedin a:hover {
+    background: #2ac4ea; }
+.social-share .feed a {
+  background: #f88c6d; }
+  .social-share .feed a:hover {
+    background: #f6653c; }
+
+.social-share-lg li a {
+  font-size: 24px;
+  height: 48px;
+  width: 48px;
+  line-height: 48px;
+  border-radius: 24px; }
+
+.social-share-md li a {
+  font-size: 18px;
+  height: 36px;
+  width: 36px;
+  line-height: 36px;
+  border-radius: 18px; }
+
+.social-share-sm li a {
+  font-size: 14px;
+  height: 24px;
+  width: 24px;
+  line-height: 24px;
+  border-radius: 12px; }
+
+.social-share-md li a {
+  font-size: 12px;
+  height: 16px;
+  width: 16px;
+  line-height: 16px;
+  border-radius: 8px; }
