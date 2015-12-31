@@ -51,6 +51,7 @@
 
 .social-share .wechat a {
   background: #9ad993;
+  cursor: pointer;
 }
 
 .social-share .wechat a:hover {
