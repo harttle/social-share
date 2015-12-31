@@ -1,37 +1,95 @@
-window.modules.follow = function(console, $ele, mod) {
-    var tml =
-        '<div class="modal fade"> ' +
-        '  <div class="modal-dialog" style="width:286px"> ' +
-        '    <div class="modal-content">' +
-        '      <div class="modal-header" style="padding: 10px 15px;">' +
-        '        <button type="button" class="close" data-dismiss="modal">' +
-        '          <span>&times;</span></button>' +
-        '        <h4 class="modal-title">分享链接</h4>' +
-        '      </div>' +
-        '      <div class="modal-body"> ' +
-        '      </div> ' +
-        '    </div>' +
-        '  </div> ' +
-        '</div>',
-        $modal = $(tml);
+(function($) {
+    var defaultConfig = {
+        size: 'md',
+        links: {},
+        blank: true,
+        classMapping: {}
+    };
 
-    var qrcode = new QRCode($modal.find('.modal-body').get(0), {
-        text: location.href,
-        width: 256,
-        height: 256,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
-    });
+    function socialShare(config) {
+        config = $.extend({}, defaultConfig, config);
+        var links = parseLinks(config.links),
+            $this = $(this);
 
-    $modal.on('hidden.bs.modal', function() {
-        $modal.remove();
-    });
+        var $ul = $('<ul class="list-unstyled social-share">');
+        $ul.addClass('social-share-' + config.size);
+        links.map(function(link) {
+            $ul.append(render(link, config));
+        });
+        $this.append($ul);
+    }
 
-    $ele.find('.wechat a').click(function(){
+    function render(link, config) {
+        var cls = 'fa-' + (config.classMapping[link.name] || link.name),
+            $li = $('<li class="social-share-item">'),
+            $a = $('<a>', {
+                href: link.url
+            }),
+            $i = $('<i>', {
+                class: 'fa ' + cls
+            });
+        $a.append($i);
+        if (config.blank) $a.attr('target', '_blank');
 
-        $modal.appendTo('body').modal('show');
+        $li.append($a);
+        $li.addClass(link.name);
 
-        return false;
-    });
-};
+        if(link.name === 'wechat'){
+            $a.removeAttr('href');
+            $a.removeAttr('target');
+            $li.click(function(){
+                qrCodeHandler(link.url);
+            });
+        }
+
+        return $li;
+    }
+
+    function parseLinks(links) {
+        var res = [];
+        for (var k in links) {
+            if (links.hasOwnProperty(k)) {
+                res.push({
+                    name: k,
+                    index: links[k].index,
+                    url: links[k].url,
+                });
+            }
+        }
+        res.sort(function(lhs, rhs) {
+            return lhs.index - rhs.index;
+        });
+        return res;
+    }
+
+    function qrCodeHandler(url) {
+        var tml =
+            '<div class="qrcode-dialog"> ' +
+            '  <div class="qrcode-header">' +
+            '    <span class="dismiss">&times;</span>' +
+            '    <header>分享链接</header>' +
+            '  </div>' +
+            '  <div class="qrcode-body"> ' +
+            '  </div>' +
+            '</div>',
+            $modal = $(tml);
+
+        var qrcode = new QRCode($modal.find('.qrcode-body').get(0), {
+            text: url,
+            width: 256,
+            height: 256,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        $modal.find('.qrcode-header .dismiss').click(function() {
+            $modal.remove();
+        });
+
+        $modal.appendTo('body').addClass('show');
+    }
+
+    $.fn.socialShare = socialShare;
+
+})(jQuery);
