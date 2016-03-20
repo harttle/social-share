@@ -1,16 +1,16 @@
 .social-share li {
   display: inline-block;
   margin-right: 5px;
-  transition: transform 0.5s;
 }
 
 .social-share li a {
   color: #fff;
   display: inline-block;
   text-align: center;
+  transition: transform 0.5s;
 }
 
-.social-share li:hover {
+.social-share li a:hover {
   transform: rotate(360deg);
 }
 
@@ -50,76 +50,43 @@
 /* brand logos */
 
 .social-share .wechat a {
-  background: #9ad993;
-  cursor: pointer;
-}
-
-.social-share .wechat a:hover {
   background: #77cc6d;
 }
 
 .social-share .github a {
-  background: #cfcfcf;
-}
-
-.social-share .github a:hover {
   background: #b5b5b5;
 }
 
 .social-share .facebook a {
-  background: #4c70ba;
-}
-
-.social-share .facebook a:hover {
   background: #3B5998;
 }
 
 .social-share .linkedin a {
-  background: #58d1ef;
-}
-
-.social-share .linkedin a:hover {
-  background: #2ac4ea;
-}
-
-.social-share .feed a {
-  background: #f88c6d;
-}
-
-.social-share .feed a:hover {
-  background: #f6653c;
-}
-
-.social-share .google-plus a {
-  background: #EF5E53;
-}
-
-.social-share .google-plus a:hover {
-  background: #D0443A;
-}
-
-.social-share .weibo a {
-  background: #FF4A5E;
-}
-
-.social-share .weibo a:hover {
-  background: #E6162D;
+  background: #4875B4;
 }
 
 .social-share .rss a {
-  background: #f88c6d;
+  background: #FA9B39;
 }
 
-.social-share .rss a:hover {
-  background: #f6653c;
+.social-share .google-plus a {
+  background: #C63D2D;
+}
+
+.social-share .weibo a {
+  background: #E6162D;
 }
 
 .social-share .twitter a {
-  background: #55acee;
+  background: #33CCFF;
 }
 
-.social-share .twitter a:hover {
-  background: #0084B4;
+.social-share .qrcode a {
+  background: #555;
+}
+
+.social-share :hover {
+  transform: rotate(360deg);
 }
 
 .qrcode-dialog {

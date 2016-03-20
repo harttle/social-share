@@ -23,7 +23,7 @@
         var cls = 'fa-' + (config.classMapping[link.name] || link.name),
             $li = $('<li class="social-share-item">'),
             $a = $('<a>', {
-                href: link.url
+                href: link.url || '#'
             }),
             $i = $('<i>', {
                 class: 'fa ' + cls
@@ -34,11 +34,11 @@
         $li.append($a);
         $li.addClass(link.name);
 
-        if(link.name === 'wechat'){
-            $a.removeAttr('href');
+        if(['wechat', 'qrcode'].indexOf(link.name) > -1){
             $a.removeAttr('target');
             $li.click(function(){
                 qrCodeHandler(link.url);
+                return false;
             });
         }
 
