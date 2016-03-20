@@ -20,6 +20,10 @@ var weiboConfig = {
             index: 4,
             url: location.href
         },
+        qrcode: {
+            index: 4,
+            url: location.href
+        },
         linkedin: {
             index: 5,
             url: 'https://linkedin.com/in/harttle'
