@@ -49,10 +49,11 @@
         var res = [];
         for (var k in links) {
             if (links.hasOwnProperty(k)) {
+                var link = links[k];
                 res.push({
                     name: k,
-                    index: links[k].index,
-                    url: links[k].url,
+                    index: typeof link === 'string' ? 0 : link.index,
+                    url: typeof link === 'string' ? link : link.url,
                 });
             }
         }

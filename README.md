@@ -26,37 +26,24 @@ Add script like this:
 
 ```javascript
 var links = {
-    facebook: {
-        index: 2,
-        url: 'https://www.facebook.com/harttle'
+    facebook: 'https://www.facebook.com/harttle',
+    qrcode: {
+        url: location.href
     },
     'google-plus': {
-        index: 1,
+        index: 2,
         url: 'https://plus.google.com/+杨珺'
     },
     weibo: {
-        index: 3,
-        url: 'http://v.t.sina.com.cn/share/share.php?url=xxx&title=xxx&appid=xxx'
+        index: 1,
+        url: 'http://v.t.sina.com.cn/share/share.php?' + $.param(weiboConfig)
     },
-    wechat: {
-        index: 4,
-        url: location.href
-    },
-    linkedin: {
-        index: 5,
-        url: 'https://linkedin.com/in/harttle'
-    },
-    rss: {
-        url: 'http://harttle.com/feed.xml'
-    },
-    github: {
-        url: 'https://github.com/harttle'
-    },
-    twitter: {
-        url: 'https://twitter.com/harttleharttle'
-    },
+    wechat: location.href,
+    linkedin: 'https://linkedin.com/in/harttle',
+    rss: 'http://harttle.com/feed.xml',
+    github: 'https://github.com/harttle',
+    twitter: 'https://twitter.com/harttleharttle'
 };
-
 $('div').socialShare({ links: links, size: 'lg'});
 ```
 
