@@ -8,18 +8,18 @@
 
     function socialShare(links, config) {
         config = $.extend({}, defaultConfig, config);
-        links = parseLinks(links);
+        links = links instanceof Array ? links : obj2arr(links);
 
         var $ul = $('<ul class="list-unstyled social-share">');
         $ul.addClass('social-share-' + config.size);
-        links.map(function(link) {
+        links.forEach(function(link) {
             $ul.append(render(link, config));
         });
         $(this).append($ul);
     }
 
     function render(link, config) {
-        var cls = 'fa-' + (config.classMapping[link.name] || link.name),
+        var cls = 'fa-' + (config.classMapping[link.style] || link.style),
             $li = $('<li class="social-share-item">'),
             $a = $('<a>', {
                 href: link.url || '#'
@@ -31,9 +31,9 @@
         if (config.blank) $a.attr('target', '_blank');
 
         $li.append($a);
-        $li.addClass(link.name);
+        $li.addClass(link.style);
 
-        if(['wechat', 'qrcode'].indexOf(link.name) > -1){
+        if(['wechat', 'qrcode'].indexOf(link.style) > -1){
             $a.removeAttr('target');
             $li.click(function(){
                 qrCodeHandler(link.url);
@@ -44,21 +44,18 @@
         return $li;
     }
 
-    function parseLinks(links) {
+    function obj2arr(links) {
         var res = [];
+
         for (var k in links) {
             if (links.hasOwnProperty(k)) {
                 var link = links[k];
                 res.push({
-                    name: k,
-                    index: typeof link === 'string' ? 0 : link.index,
-                    url: typeof link === 'string' ? link : link.url,
+                    style: k,
+                    url: link
                 });
             }
         }
-        res.sort(function(lhs, rhs) {
-            return lhs.index - rhs.index;
-        });
         return res;
     }
 

@@ -24,7 +24,7 @@ Import Social Share:
 <script src="path/to/social-share.min.js"></script>
 ```
 
-### Minimal Usage
+### Mininal Usage
 
 ```javascript
 $('div').socialShare({
@@ -34,43 +34,32 @@ $('div').socialShare({
 });
 ```
 
-### Full Usage
+### Ordered Links
+
+In case you want these links be ordered, put them into an array:
 
 ```javascript
-var links = {
-    facebook: {
-        index: 2,
-        url: 'https://www.facebook.com/harttle'
-    },
-    'google-plus': {
-        index: 1,
-        url: 'https://plus.google.com/+杨珺'
-    },
-    weibo: {
-        index: 3,
-        url: 'http://v.t.sina.com.cn/share/share.php?url=xxx&title=xxx&appid=xxx'
-    },
-    wechat: {
-        index: 4,
-        url: location.href
-    },
-    linkedin: {
-        index: 5,
-        url: 'https://linkedin.com/in/harttle'
-    },
-    rss: {
-        url: 'http://harttle.com/feed.xml'
-    },
-    github: {
-        url: 'https://github.com/harttle'
-    },
-    twitter: {
-        url: 'https://twitter.com/harttleharttle'
-    },
-};
+var links = [{
+    style: 'facebook',
+    url: 'https://www.facebook.com/harttle'
+},{
+    style: 'google-plus',
+    url: 'https://plus.google.com/+杨珺',
+},{
+    style: 'weibo', 
+    url: 'http://v.t.sina.com.cn/share/share.php?url=xxx&title=xxx&appid=xxx'
+}];
 
-$('div').socialShare(links, {size: 'lg'});
+$('div').socialShare(links);
 ```
+
+### Available Styles
+
+These are available styles:
+
+`qrcode`, `facebook`, `google-plus`, `weibo`, `wechat`, `linkedin`, `rss`, `github`, `twitter`.
+
+> Feel free to contribute yours!
 
 ## Options
 
