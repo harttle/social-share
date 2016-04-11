@@ -8,6 +8,8 @@ Dependencies [Fontawesome][font], [jQuery][jq].
 
 ## Usage
 
+### Import
+
 Import jQuery and Fontawesome:
 
 ```html
@@ -22,28 +24,52 @@ Import Social Share:
 <script src="path/to/social-share.min.js"></script>
 ```
 
-Add script like this:
+### Minimal Usage
 
 ```javascript
 var links = {
     facebook: 'https://www.facebook.com/harttle',
-    qrcode: {
-        url: location.href
+    wechat: location.href,
+    rss: 'http://harttle.com/feed.xml'
+};
+$('div').socialShare({ links: links });
+```
+
+### Full Usage
+
+```javascript
+var links = {
+    facebook: {
+        index: 2,
+        url: 'https://www.facebook.com/harttle'
     },
     'google-plus': {
-        index: 2,
+        index: 1,
         url: 'https://plus.google.com/+杨珺'
     },
     weibo: {
-        index: 1,
-        url: 'http://v.t.sina.com.cn/share/share.php?' + $.param(weiboConfig)
+        index: 3,
+        url: 'http://v.t.sina.com.cn/share/share.php?url=xxx&title=xxx&appid=xxx'
     },
-    wechat: location.href,
-    linkedin: 'https://linkedin.com/in/harttle',
-    rss: 'http://harttle.com/feed.xml',
-    github: 'https://github.com/harttle',
-    twitter: 'https://twitter.com/harttleharttle'
+    wechat: {
+        index: 4,
+        url: location.href
+    },
+    linkedin: {
+        index: 5,
+        url: 'https://linkedin.com/in/harttle'
+    },
+    rss: {
+        url: 'http://harttle.com/feed.xml'
+    },
+    github: {
+        url: 'https://github.com/harttle'
+    },
+    twitter: {
+        url: 'https://twitter.com/harttleharttle'
+    },
 };
+
 $('div').socialShare({ links: links, size: 'lg'});
 ```
 
