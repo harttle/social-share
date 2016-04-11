@@ -6,17 +6,16 @@
         classMapping: {}
     };
 
-    function socialShare(config) {
+    function socialShare(links, config) {
         config = $.extend({}, defaultConfig, config);
-        var links = parseLinks(config.links),
-            $this = $(this);
+        links = parseLinks(links);
 
         var $ul = $('<ul class="list-unstyled social-share">');
         $ul.addClass('social-share-' + config.size);
         links.map(function(link) {
             $ul.append(render(link, config));
         });
-        $this.append($ul);
+        $(this).append($ul);
     }
 
     function render(link, config) {

@@ -23,7 +23,7 @@ var weiboConfig = {
         twitter: 'https://twitter.com/harttleharttle'
     };
 
-$('section.lg').socialShare({ links: links, size: 'lg'});
-$('section.md').socialShare({ links: links, size: 'md'});
-$('section.sm').socialShare({ links: links, size: 'sm'});
-$('section.xs').socialShare({ links: links, size: 'xs'});
+$('section.lg').socialShare(links, {size: 'lg'});
+$('section.md').socialShare(links);
+$('section.sm').socialShare(links, {size: 'sm'});
+$('section.xs').socialShare(links, {size: 'xs'});

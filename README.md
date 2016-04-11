@@ -27,12 +27,11 @@ Import Social Share:
 ### Minimal Usage
 
 ```javascript
-var links = {
+$('div').socialShare({
     facebook: 'https://www.facebook.com/harttle',
     wechat: location.href,
     rss: 'http://harttle.com/feed.xml'
-};
-$('div').socialShare({ links: links });
+});
 ```
 
 ### Full Usage
@@ -70,10 +69,12 @@ var links = {
     },
 };
 
-$('div').socialShare({ links: links, size: 'lg'});
+$('div').socialShare(links, {size: 'lg'});
 ```
 
 ## Options
+
+### $.fn.socialShare(links, options)
 
 ### links
 
@@ -83,7 +84,7 @@ Default: `{}`
 
 Share buttons are set in `links` object.
 
-### size
+### options.size
 
 Type: `String`
 
@@ -96,7 +97,7 @@ Size of the buttons, available values:
 * `"sm"`(small)
 * `"xs"`(exteme small)
 
-### blank
+### options.blank
 
 Type: `Boolean`
 
@@ -115,7 +116,6 @@ The `href` attribute for the the share button. For `"wechat"`, `links.url` is th
 Type: `Number`
 
 Optional, share buttons are sorted by `links.index`.
-
 
 [font]: http://fontawesome.io/
 [jq]: http://jquery.com/
