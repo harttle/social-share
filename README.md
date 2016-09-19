@@ -6,6 +6,8 @@ Live Demo: http://harttle.com/social-share/
 
 Dependencies: [Fontawesome][font]
 
+Download: <https://github.com/harttle/social-share/releases>
+
 ## Installation
 
 Import Fontawesome:
@@ -17,8 +19,8 @@ Import Fontawesome:
 Import Social Share:
 
 ```html
-<link rel="stylesheet" href="path/to/social-share.min.css">
-<script src="path/to/social-share.min.js"></script>
+<link rel="stylesheet" href="social-share/dist/social-share.min.css">
+<script src="social-share/dist/social-share.min.js"></script>
 ```
 
 ## Mininal Usage
