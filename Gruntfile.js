@@ -13,8 +13,8 @@ module.exports = function(grunt) {
                 sourceMap: false
             },
             dist: {
-                src: 'lib/built.js',
-                dest: 'lib/<%= pkg.name %>.min.js'
+                src: 'dist/built.js',
+                dest: 'dist/<%= pkg.name %>.min.js'
             }
         },
         concat: {
@@ -22,8 +22,8 @@ module.exports = function(grunt) {
                 separator: ';',
             },
             dist: {
-                src: ['src/qrcode.min.js', 'src/social-share.js'],
-                dest: 'lib/built.js',
+                src: ['lib/qrcode.min.js', 'src/social-share.js', 'src/plugins/*.js'],
+                dest: 'dist/built.js',
             },
         },
         cssmin: {
@@ -32,11 +32,11 @@ module.exports = function(grunt) {
                     banner: '/*! bbbb */'
                 },
                 files: {
-                    'lib/<%= pkg.name %>.min.css': 'src/social-share.css'
+                    'dist/<%= pkg.name %>.min.css': 'src/social-share.css'
                 }
             }
         },
-        clean: ["lib/built.js"]
+        clean: ["dist/built.js"]
     });
 
     // Load the plugin that provides the "uglify" task.

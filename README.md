@@ -2,19 +2,16 @@
 
 Social share widget supporting: wechat, weibo, linkedin, github, google+, rss, twitter, facebook and more.
 
-Demo: http://harttle.com/social-share/
+Live Demo: http://harttle.com/social-share/
 
-Dependencies [Fontawesome][font], [jQuery][jq].
+Dependencies: [Fontawesome][font]
 
-## Usage
+## Installation
 
-### Import
-
-Import jQuery and Fontawesome:
+Import Fontawesome:
 
 ```html
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 ```
 
 Import Social Share:
@@ -24,54 +21,114 @@ Import Social Share:
 <script src="path/to/social-share.min.js"></script>
 ```
 
-### Mininal Usage
+## Mininal Usage
 
-```javascript
-$('div').socialShare({
-    facebook: 'https://www.facebook.com/harttle',
-    wechat: location.href,
-    rss: 'http://harttle.com/feed.xml'
-});
+```html
+<div id="share-area"></div>
 ```
 
-### Ordered Links
+```javascript
+var el = document.getElementById('share-area');
+var links = [{
+    url: 'http://harttle.com',
+    target: '_qrcode'
+}, {
+    plugin: 'github',
+    url: 'http://github.com/harttle'
+}, {
+    plugin: 'github',
+    args: {
+        id: 'harttle'
+    }
+}];
+window.socialShare(el, links);
+```
 
-In case you want these links be ordered, put them into an array:
+## Full Usage
 
 ```javascript
 var links = [{
-    style: 'facebook',
-    url: 'https://www.facebook.com/harttle'
-},{
-    style: 'google-plus',
-    url: 'https://plus.google.com/+杨珺',
-},{
-    style: 'weibo', 
-    url: 'http://v.t.sina.com.cn/share/share.php?url=xxx&title=xxx&appid=xxx'
+    url: 'http://harttle.com',
+    target: '_qrcode',
+    color: '#fff',
+    background: '#b5b5b5',
+    icon: 'fa-code-fork',
+    plugin: 'github',
+    args: {
+        id
+    }
 }];
-
-$('div').socialShare(links);
+var options = {
+    size: 'md'
+};
+window.socialShare(el, links, options);
 ```
-
-### Available Styles
-
-These are available styles:
-
-`qrcode`, `facebook`, `google-plus`, `weibo`, `wechat`, `linkedin`, `rss`, `github`, `twitter`.
-
-> Feel free to contribute yours!
 
 ## Options
 
-### $.fn.socialShare(links, options)
+### links.url
 
-### links
+Type: `String`
+
+Default: `location.href`
+
+The url of this icon. Typically, `links.url` will be set to the `href` attribute
+of the corresponding anchor.
+
+### links.target
+
+Type: `String`
+
+Default: `""`
+
+This will be set to the `target` attribute of the anchor.
+Available targets: `"_self"`, `"_parent"`, `"_blank"`, `"_top"`, `"_qrcode"`
+If set to `_qrcode`, the `links.url` will be opened as a qrcode image within a modal.
+
+### links.icon
+
+Type: `String`
+
+Default: `'fa-code-fork'`
+
+The Fontawesome icon class for the share button.
+
+### links.color
+
+Type: `String`
+
+Defalt: `'#fff'`
+
+The color of the Fontawesome icon.
+
+### links.background
+
+Type: `String`
+
+Default: `'#b5b5b5'`
+
+The background of the Fontawesome icon.
+
+### links.plugin
+
+Type: `String`
+
+Default: `undefined`
+
+The plugin to use. Typically, a plugin is used to generage
+the above settings, according to the arguments set by `links.args`.
+
+Note: Settings within `links` will override the settings returned by a plugin.
+For example, `github` plugin responds with the url `//foo`, 
+while `links.url` is set to `//bar`. The result url will be `//bar`.
+
+### links.args
 
 Type: `Object`
 
 Default: `{}`
 
-Share buttons are set in `links` object.
+The arguments passed to the plugin, which is specified by `links.plugin`.
 
 ### options.size
 
@@ -86,25 +143,165 @@ Size of the buttons, available values:
 * `"sm"`(small)
 * `"xs"`(exteme small)
 
-### options.blank
+## Plugin List
 
-Type: `Boolean`
+### Weibo（微博）
 
-Default: `true`
+All args will be append to URL query string.
 
-Should the links open in new window? If set `true`, `target="_blank"` will be set.
+```javascript
+var link = {
+    plugin: 'weibo',
+    args: {
+        appid: '<your App ID>',         // Default: ''
+        title: 'About Harttle',         // Default: document.title
+        url: '//harttle.com/about.html' // Default: location.href
+        source: 'http://harttle.com'    // Any other query string you need...
+    }
+};
+```
 
-## links.url
+> `appid`是微博认证的App ID，便于微博跟踪。`title`和`url`用于微博分享内容和参考链接。
 
-Type: `String`
+### Wechat（微信）
 
-The `href` attribute for the the share button. For `"wechat"`, `links.url` is the url encoded within the qrcode img.
+```javascript
+var link = {
+    plugin: 'wechat'
+};
+```
 
-## links.index
+`wechat` plugin accept no arguments, while you can still set `links` properties:
 
-Type: `Number`
+```javascript
+var link = {
+    plugin: 'wechat',
+    url: '//yet.another.url',
+    color: 'yellow'
+};
+```
 
-Optional, share buttons are sorted by `links.index`.
+### QR Code（二维码）
+
+```javascript
+var link = {
+    plugin: 'qrcode'
+};
+```
+
+Just like `wechat` plugin, with different background and icon.
+
+### RSS
+
+```javascript
+var link = {
+    plugin: 'rss'
+};
+```
+
+### Github
+
+```javascript
+var link = {
+    plugin: 'github',
+    args: {
+        id: 'harttle'           // Your Github ID
+    }
+};
+```
+
+### Linkedin
+
+```javascript
+var link = {
+    plugin: 'linkedin',
+    args: {
+        id: 'harttle'           // Your linkedin ID
+    }
+};
+```
+
+### Google Plus
+
+```javascript
+var link = {
+    plugin: 'google-plus',
+    args: {
+        id: 'harttle'           // Your Google+ ID
+    }
+};
+```
+
+### Twitter
+
+```javascript
+var link = {
+    plugin: 'twitter',
+    args: {
+        id: 'harttleharttle'    // Your twitter ID
+    }
+};
+```
+
+### Facebook
+
+```javascript
+var link = {
+    plugin: 'facebook',
+    args: {
+        id: 'harttle'           // Your facebook ID
+    }
+}
+```
+
+## How to Write Plugins
+
+Plugins are used to generate a `link` Object according to the `links.args`.
+For example, the `github` plugin:
+
+```javascript
+(function(socialShare) {
+    socialShare.plugin('github', function(args) {
+        return {
+            url: 'https://github.com/' + args.id,
+            background: '#b5b5b5',
+            icon: 'fa-github'
+        };
+    });
+})(window.socialShare);
+```
+
+To use this plugin, simply set `plugin` to `"github"`, and specify the args:
+
+```js
+var links = [{
+    plugin: 'github',
+    args: {
+        id: 'harttle'
+    }
+}];
+```
+
+Which is equavalent to:
+
+```js
+var links = [{
+    url: 'https://github.com/harttle',
+    background: '#b5b5b5',
+    icon: 'fa-github'
+}];
+```
+
+## Contribution Guideline
+
+It's wellcome to make contributions by any means.
+While we suggest the following guide lines:
+
+1. Fork this repo.
+2. Add your plugin within `src/plugins/`.
+3. Run `grunt` to build the `dist/` files.
+4. Test your plugin in `demo/index.js`
+4. Commit and make a pull request.
 
 [font]: http://fontawesome.io/
 [jq]: http://jquery.com/

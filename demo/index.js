@@ -1,49 +1,57 @@
-var weiboConfig = {
-        appid: 'xxx',
-        title: document.title,
-        url: encodeURIComponent(location.href)
-    },
-    linkObj = {
-        facebook: 'https://www.facebook.com/harttle',
-        qrcode: location.href,
-        'google-plus': 'https://plus.google.com/+杨珺',
-        weibo: 'http://v.t.sina.com.cn/share/share.php?' + $.param(weiboConfig),
-        wechat: location.href,
-        linkedin: 'https://linkedin.com/in/harttle',
-        rss: 'http://harttle.com/feed.xml',
-        github: 'https://github.com/harttle',
-        twitter: 'https://twitter.com/harttleharttle'
-    },
-    linkArr = [{
-        style: 'facebook',
-        url: 'https://www.facebook.com/harttle'
+var links = [{
+        target: '_qrcode',
+        url: 'http://harttle.com',
+        color: '#fff',
+        background: '#b5b5b5',
+        icon: 'fa-code-fork'
     }, {
-        style: 'qrcode',
-        url: location.href
+        target: '_blank',
+        icon: 'fa-cloud'
+    },{
+        plugin: 'facebook',
+        args: {
+            id: 'harttle'
+        }
+    },{
+        plugin: 'facebook',
+        url: 'http://xxx.com'
     }, {
-        style: 'google-plus',
-        url: 'https://plus.google.com/+杨珺'
+        plugin: 'google-plus',
+        args: {
+            id: '杨珺'
+        }
     }, {
-        style: 'weibo',
-        url: 'http://v.t.sina.com.cn/share/share.php?' + $.param(weiboConfig)
+        plugin: 'weibo', 
+        args: {
+            appid: 'xxx',
+            source: 'http://harttle.com'
+        }
     }, {
-        style: 'wechat',
-        url: location.href
+        plugin: 'wechat'
     }, {
-        style: 'linkedin',
-        url: 'https://linkedin.com/in/harttle'
+        plugin: 'qrcode',
+        url: 'http://harttle.com'
     }, {
-        style: 'rss',
+        plugin: 'linkedin',
+        args: {
+            id: 'harttle'
+        }
+    }, {
+        plugin: 'rss',
         url: 'http://harttle.com/feed.xml'
     }, {
-        style: 'github',
-        url: 'https://github.com/harttle'
+        plugin: 'github',
+        args: {
+            id: 'harttle'
+        }
     }, {
-        style: 'twitter',
-        url: 'https://twitter.com/harttleharttle}'
+        plugin: 'twitter',
+        args: {
+            id: 'harttleharttle'
+        }
     }];
 
-$('section.lg').socialShare(linkObj, { size: 'lg' });
-$('section.md').socialShare(linkObj);
-$('section.sm').socialShare(linkArr, { size: 'sm' });
-$('section.xs').socialShare(linkArr, { size: 'xs', blank: false });
+window.socialShare(document.getElementById('xs'), links, { size: 'xs' });
+window.socialShare(document.getElementById('sm'), links, { size: 'sm' });
+window.socialShare(document.getElementById('md'), links);
+window.socialShare(document.getElementById('lg'), links, { size: 'lg' });
