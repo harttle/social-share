@@ -43,7 +43,7 @@
             target: '',
             icon: 'fa-share-alt',
             color: '#fff',
-            background: '#333'
+            background: '#b5b5b5'
         };
         if (config.plugin) {
             assign(defaultConfig, callPlugin(config.plugin, config.args || {}));
