@@ -109,7 +109,7 @@
         });
 
         dismiss.addEventListener('click', function() {
-            modal.remove();
+            document.body.removeChild(modal);
         });
 
         document.body.appendChild(modal);
