@@ -1,6 +1,6 @@
 {
   "name": "social-share",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Social share widget supporting: wechat, weibo, linkedin, github, google+, rss, twitter, facebook and more.",
   "main": "Grunfile.js",
   "scripts": {
