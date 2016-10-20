@@ -3,6 +3,7 @@
         return {
             target: '_qrcode',
             icon: 'fa-qrcode',
+            title: 'Here is the Link!',
             background: '#555'
         };
     });

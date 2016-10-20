@@ -50,10 +50,22 @@
   transform: rotate(360deg);
 }
 
-.qrcode-dialog {
+.social-share-dialog-bg{
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  transition: .5s background;
+}
+.social-share-dialog-bg.show{
+  background: rgba(0,0,0,0.8);
+}
+
+.social-share-dialog {
   width: auto;
   opacity: 0;
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   width: 286px;
@@ -63,23 +75,23 @@
   border-radius: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
   background: #fff;
-  transition: opacity 0.3s;
+  transition: opacity 0.8s;
 }
 
-.qrcode-dialog.show {
+.social-share-dialog-bg.show .social-share-dialog{
   opacity: 1;
 }
 
-.qrcode-dialog .qrcode-header{
+.social-share-dialog .dialog-header{
   padding: 15px 15px 5px;
 }
 
-.qrcode-dialog .qrcode-header .dismiss {
+.social-share-dialog .dialog-header .dismiss {
   float: right;
   font-weight: bold;
   cursor: pointer;
 }
 
-.qrcode-dialog .qrcode-body {
+.social-share-dialog .dialog-body {
   padding: 10px 15px;
 }

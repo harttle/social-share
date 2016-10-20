@@ -71,32 +71,35 @@
             a.removeAttribute('target');
             li.addEventListener('click', function(e) {
                 e.preventDefault();
-                qrCodeHandler(config.url);
+                qrCodeHandler(config.url, config.title || 'Share Link');
             });
         }
 
         return li;
     }
 
-    function qrCodeHandler(url) {
+    function qrCodeHandler(url, title) {
+        var bg = document.createElement('div');
+        bg.className = "social-share-dialog-bg";
+
         var modal = document.createElement('div');
-        modal.className = "qrcode-dialog";
+        modal.className = "social-share-dialog";
 
         var header = document.createElement('div');
-        header.className = "qrcode-header";
+        header.className = "dialog-header";
         modal.appendChild(header);
 
-        var dismiss = document.createElement('span');
-        dismiss.className = "dismiss";
-        dismiss.innerHTML = '&times';
-        header.appendChild(dismiss);
+        var dismissBtn = document.createElement('span');
+        dismissBtn.className = "dismiss";
+        dismissBtn.innerHTML = '&times';
+        header.appendChild(dismissBtn);
 
-        var title = document.createElement('header');
-        title.innerHTML = '分享链接';
-        header.appendChild(title);
+        var titleEl = document.createElement('header');
+        titleEl.innerHTML = title;
+        header.appendChild(titleEl);
 
         var body = document.createElement('div');
-        body.className = "qrcode-body";
+        body.className = "dialog-body";
         modal.appendChild(body);
 
         var qrcode = new QRCode(body, {
@@ -108,14 +111,27 @@
             correctLevel: QRCode.CorrectLevel.H
         });
 
-        dismiss.addEventListener('click', function() {
-            document.body.removeChild(modal);
+        dismissBtn.addEventListener('click', dismiss);
+        modal.addEventListener('click', stopPropagation)
+        bg.addEventListener('click', dismiss);
+        window.addEventListener('keydown', onKeyDown);
+
+        bg.appendChild(modal);
+        document.body.appendChild(bg);
+        setTimeout(function() {
+            bg.className += " show";
         });
 
-        document.body.appendChild(modal);
-        setTimeout(function() {
-            modal.className = "qrcode-dialog show";
-        });
+        function stopPropagation(event){
+            event.stopPropagation();
+        }
+        function onKeyDown(event){
+            if (event.keyCode == 27) dismiss();
+        }
+        function dismiss(e) {
+            document.body.removeChild(bg);
+            window.removeEventListener('keydown', onKeyDown);
+        }
     }
 
     global.socialShare = socialShare;

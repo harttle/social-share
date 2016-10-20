@@ -85,7 +85,9 @@ Default: `""`
 
 This will be set to the `target` attribute of the anchor.
 Available targets: `"_self"`, `"_parent"`, `"_blank"`, `"_top"`, `"_qrcode"`
+
 If set to `_qrcode`, the `links.url` will be opened as a qrcode image within a modal.
+In the meanwhile, the `links.title` will be set to the QRcode modal title (default: `'Share Link'`). 
 
 ### links.icon
 
