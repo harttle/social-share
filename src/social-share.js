@@ -8,7 +8,7 @@
         }, config);
 
         var ul = document.createElement('ul');
-        ul.className = "list-unstyled social-share social-share-" + config.size;
+        ul.className = "social-share social-share-" + config.size;
         links.forEach(function(link) {
             ul.appendChild(render(link));
         });
