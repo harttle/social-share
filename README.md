@@ -101,7 +101,7 @@ The Fontawesome icon class for the share button.
 
 Type: `String`
 
-Defalt: `'#fff'`
+Default: `'#fff'`
 
 The color of the Fontawesome icon.
 
