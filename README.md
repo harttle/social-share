@@ -1,5 +1,7 @@
 # social-share
 
+![demo image showing icons with different sizes](https://user-images.githubusercontent.com/4427974/55770334-839a8380-5ab6-11e9-9016-4cc1597f5a20.png)
+
 Social share widget supporting: wechat, weibo, linkedin, github, google+, rss, twitter, facebook and more.
 
 Live Demo: http://harttle.com/social-share/
